@@ -37,7 +37,7 @@ export default function IntroPage() {
             initial={{ y: 0 }}
             transition={{ duration: 1, ease: 'easeInOut' }}
           >
-            DOMINIC
+            Welcome To
           </motion.div>
           <motion.div
             className="flex-1 bg-white text-black flex justify-center items-center text-[12vw] md:text-7xl font-extrabold select-none"
@@ -45,7 +45,7 @@ export default function IntroPage() {
             initial={{ y: 0 }}
             transition={{ duration: 1, ease: 'easeInOut' }}
           >
-            STUDIOS
+            My Portfolio
           </motion.div>
         </div>
       ) : (

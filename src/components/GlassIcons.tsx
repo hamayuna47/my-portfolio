@@ -1,4 +1,5 @@
 import "./GlassIcons.css";
+import React, { JSX } from 'react'
 
 type GlassIconItem = {
   icon: JSX.Element;
