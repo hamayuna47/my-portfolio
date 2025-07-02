@@ -1,7 +1,7 @@
 'use client'
 
 import { useInView } from 'react-intersection-observer'
-import Threads from './Threads'
+import Particles from './Particles'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FaLinkedin, FaFacebook, FaInstagram } from 'react-icons/fa'
@@ -11,15 +11,21 @@ export default function FinalPage() {
 
   return (
     <div className="w-full text-white bg-black font-poppins">
-      {/* Top Threads Section */}
+      {/* Top Particles Section */}
       <section ref={ref} className="w-full h-screen relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           {inView && (
-            <Threads
-              amplitude={1}
-              distance={0}
-              enableMouseInteraction={true}
-            />
+            <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+              <Particles
+                particleColors={['#ffffff', '#ffffff']}
+                particleCount={200}
+                particleSpread={10}
+                speed={0.1}
+                particleBaseSize={100}
+                moveParticlesOnHover={true}
+                alphaParticles={false}
+                disableRotation={false} className={undefined}              />
+            </div>
           )}
         </div>
         <div className="relative z-10 h-full flex items-center justify-center" />
@@ -39,7 +45,6 @@ export default function FinalPage() {
             <div>
               <h3 className="font-semibold text-lg mb-2">Social</h3>
               <div className="flex flex-col space-y-2 text-gray-300">
-  
                 <Link href="https://facebook.com/hamayun.abdullah.92" target="_blank" className="flex items-center gap-2 hover:text-white">
                   <FaFacebook /> Facebook
                 </Link>
@@ -49,11 +54,9 @@ export default function FinalPage() {
               </div>
             </div>
 
-
             <div>
               <h3 className="font-semibold text-lg mb-2">Address</h3>
               <p className="text-gray-300">
-                
                 House #9, Al haram Executive Villas, Street 1,<br />
                 Bahawalpur, Pakistan
               </p>
