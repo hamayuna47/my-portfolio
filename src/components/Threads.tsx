@@ -128,7 +128,7 @@ const Threads = ({
   ...rest
 }) => {
   const containerRef = useRef(null);
-  const animationFrameId = useRef();
+  const animationFrameId = useRef<number | null>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
