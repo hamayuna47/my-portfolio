@@ -32,13 +32,13 @@ export default function InfiniteScroll({
     const container = containerRef.current;
     if (!container) return;
     if (items.length === 0) return;
-
-    const divItems = gsap.utils.toArray(container.children);
+    const divItems = gsap.utils.toArray<HTMLElement>(container.children);
     if (!divItems.length) return;
 
-    const firstItem = divItems[0];
+    const firstItem = divItems[0] as HTMLElement;
     const itemStyle = getComputedStyle(firstItem);
     const itemHeight = firstItem.offsetHeight;
+
     const itemMarginTop = parseFloat(itemStyle.marginTop) || 0;
     const totalItemHeight = itemHeight + itemMarginTop;
     const totalHeight = (itemHeight * items.length) + (itemMarginTop * (items.length - 1));
@@ -55,10 +55,10 @@ export default function InfiniteScroll({
       type: "wheel,touch,pointer",
       preventDefault: true,
       onPress: ({ target }) => {
-        target.style.cursor = "grabbing";
+        (target as HTMLElement).style.cursor = "grabbing";
       },
       onRelease: ({ target }) => {
-        target.style.cursor = "grab";
+        (target as HTMLElement).style.cursor = "grab";
       },
       onChange: ({ deltaY, isDragging, event }) => {
         const d = event.type === "wheel" ? -deltaY : deltaY;
