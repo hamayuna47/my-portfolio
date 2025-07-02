@@ -19,9 +19,8 @@ export async function POST(request: Request) {
     }
 
     // Limit the number of connections reused (best for serverless)
-    if (!client.topology?.isConnected()) {
-      await client.connect()
-    }
+await client.connect()
+
 
     const db = client.db(dbName)
     const collection = db.collection('contacts')
