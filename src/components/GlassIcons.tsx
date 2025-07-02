@@ -1,6 +1,19 @@
 import "./GlassIcons.css";
 
-const gradientMapping = {
+type GlassIconItem = {
+  icon: JSX.Element;
+  label?: string;
+  color?: string;
+  customClass?: string;
+  onClick?: () => void;
+};
+
+type GlassIconsProps = {
+  items: GlassIconItem[];
+  className?: string;
+};
+
+const gradientMapping: Record<string, string> = {
   blue: "linear-gradient(hsl(223, 90%, 50%), hsl(208, 90%, 50%))",
   purple: "linear-gradient(hsl(283, 90%, 50%), hsl(268, 90%, 50%))",
   red: "linear-gradient(hsl(3, 90%, 50%), hsl(348, 90%, 50%))",
@@ -9,9 +22,9 @@ const gradientMapping = {
   green: "linear-gradient(hsl(123, 90%, 40%), hsl(108, 90%, 40%))",
 };
 
-const GlassIcons = ({ items, className }) => {
-  const getBackgroundStyle = (color) => {
-    if (gradientMapping[color]) {
+const GlassIcons = ({ items, className }: GlassIconsProps) => {
+  const getBackgroundStyle = (color?: string) => {
+    if (color && gradientMapping[color]) {
       return { background: gradientMapping[color] };
     }
     return { background: color };
@@ -25,7 +38,7 @@ const GlassIcons = ({ items, className }) => {
           className={`icon-btn ${item.customClass || ""}`}
           aria-label={item.label}
           type="button"
-          onClick={item.onClick || (() => {})} // <- ✅ Enable button click
+          onClick={item.onClick || (() => {})}
         >
           <span
             className="icon-btn__back"
