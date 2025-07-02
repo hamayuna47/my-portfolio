@@ -52,8 +52,7 @@ export default function IntroPage() {
         // --- Scrollable Sections after intro ---
         <div className="h-screen overflow-y-scroll snap-y snap-mandatory">
           {/* Main Section with POP animation */}
-          <motion.section 
-            id="home"
+          <motion.section
             className="h-screen snap-start"
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: clicked ? 1 : 0, scale: clicked ? 1 : 0.98 }}
@@ -63,39 +62,34 @@ export default function IntroPage() {
           </motion.section>
 
           {/* About Section with split animation */}
-           <section id="about" className="h-screen snap-start">
+          <section className="h-screen snap-start">
             <AboutSection />
           </section>
 
-          <section id="services" className="min-h-screen snap-start">
-            <ServicesSection />
-          </section>
-
-          <section id="industries" className="min-h-industry snap-start">
-            <IndustrySection />
-          </section>
-
-          <section id="success" className="min-h-success snap-start">
-            <SuccessStoriesSection />
-          </section>
-
-          <section id="technologies" className="min-h-tech snap-start">
+          <section className="min-h-screen snap-start">
+  <ServicesSection />
+</section>
+<section className="min-h-industry snap-start">
+  <IndustrySection />
+</section>
+<section className="min-h-success snap-start">
+  <SuccessStoriesSection />
+</section>
+          <section className="min-h-tech snap-start">
             <TechnologiesPage />
           </section>
 
-          <section id="comments" className="min-h-comments snap-start">
+          <section className="min-h-comments snap-start">
             <CommentsPage />
           </section>
-
-          <section id="contact" className="min-h-contact snap-start">
+          <section className="min-h-contact snap-start">
             <ContactPage />
           </section>
-          <section id="final" className="min-h-final snap-start snap-proximity scroll-smooth">
+          <section className="min-h-final snap-start">
             <FinalPage />
           </section>
-
-          {/* Floating Action Menu */}
-          <FloatingActionMenu />
+        
+      
         </div>
       )}
     </main>
