@@ -1,6 +1,7 @@
 'use client'
 
 import InfiniteScroll from '@/components/InfiniteScroll'
+import { AiFillFilePdf } from 'react-icons/ai'
 
 export default function SuccessStoriesPage() {
   const projectItems = [
@@ -77,24 +78,31 @@ export default function SuccessStoriesPage() {
   ]
 
   return (
+    <section className="w-full min-h-screen bg-black text-white font-poppins flex items-center justify-center overflow-visible px-4 py-20">
+      {/* Two-column layout */}
+      <div className="flex flex-col items-start mr-10">
+      <h1 className="text-5xl font-extrabold text-center mb-12">Success Stories</h1>
+<div className="flex items-center gap-2 text-center mb-12 text-white transition-colors">
+  <span>
+    For more details, check out the case studies (PDF)
+  </span>
+  <a href="/portfolio.pdf" download title="Download PDF">
+    <AiFillFilePdf className="text-red-500 w-8 h-8 hover:text-red-400 transition-colors" />
+  </a>
+</div>
 
 
-    
-<section className="w-full min-h-screen bg-black text-white font-poppins flex items-center justify-center overflow-visible px-4 py-20">
-      <h1 className="text-5xl font-extrabold text-right mb-10">Success Stories</h1>
+      </div>
 
-  
-  <InfiniteScroll
-    items={projectItems}
-    isTilted={true}
-    tiltDirection="left"
-    autoplay={true}
-    autoplaySpeed={0.6}
-    autoplayDirection="down"
-    pauseOnHover={true}
-  />
-</section>
-
-
+      <InfiniteScroll
+        items={projectItems}
+        isTilted={true}
+        tiltDirection="left"
+        autoplay={true}
+        autoplaySpeed={0.6}
+        autoplayDirection="down"
+        pauseOnHover={true}
+      />
+    </section>
   )
 }

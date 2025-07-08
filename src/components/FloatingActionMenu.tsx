@@ -6,10 +6,18 @@ import Link from 'next/link'
 
 export default function FloatingActionMenu() {
   const [isOpen, setIsOpen] = useState(false)
-  const [isChatOpen, setIsChatOpen] = useState(false)
 
   const toggleMenu = () => setIsOpen(prev => !prev)
-  const toggleChat = () => setIsChatOpen(prev => !prev)
+
+  // Scroll smoothly to section
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, id: string) => {
+    e.preventDefault()
+    const section = document.querySelector(id)
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' })
+      setIsOpen(false) // close the menu after navigation
+    }
+  }
 
   return (
     <>
@@ -25,37 +33,25 @@ export default function FloatingActionMenu() {
         {/* Menu Panel */}
         {isOpen && (
           <div className="mt-4 w-48 bg-white text-black rounded-lg shadow-xl p-4 space-y-3 text-sm animate-fadeIn">
-            <Link href="#home" className="block hover:font-semibold">Home</Link>
-            <Link href="#about" className="block hover:font-semibold">About</Link>
-            <Link href="#services" className="block hover:font-semibold">Services</Link>
-            <Link href="#technologies" className="block hover:font-semibold">Technologies</Link>
-            <Link href="#comments" className="block hover:font-semibold">Comments</Link>
-            <Link href="#contact" className="block hover:font-semibold">Contact</Link>
-          
+            <a href="#home" onClick={(e) => handleSmoothScroll(e, '#home')} className="block hover:font-semibold">Home</a>
+            <a href="#about" onClick={(e) => handleSmoothScroll(e, '#about')} className="block hover:font-semibold">About</a>
+            <a href="#services" onClick={(e) => handleSmoothScroll(e, '#services')} className="block hover:font-semibold">Services</a>
+            <a href="#technologies" onClick={(e) => handleSmoothScroll(e, '#technologies')} className="block hover:font-semibold">Technologies</a>
+            <a href="#comments" onClick={(e) => handleSmoothScroll(e, '#comments')} className="block hover:font-semibold">Comments</a>
+            <a href="#contact" onClick={(e) => handleSmoothScroll(e, '#contact')} className="block hover:font-semibold">Contact</a>
+
+            {/* WhatsApp Chat Button */}
+            <a
+              href="https://wa.me/923030608736"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center gap-2 p-2 mt-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
+            >
+              <FaComments /> Chat with us
+            </a>
           </div>
         )}
       </div>
-
-      {/* Chat Window */}
-      {isChatOpen && (
-        <div className="fixed bottom-24 right-6 z-50 w-80 bg-white rounded-xl shadow-lg p-4 text-black animate-slideUp">
-          <div className="flex justify-between items-center mb-3">
-            <h4 className="font-bold">Virtual Assistant</h4>
-            <button onClick={toggleChat} className="text-gray-500 hover:text-black">
-              <FaTimes />
-            </button>
-          </div>
-          <div className="h-60 overflow-y-auto border p-2 rounded bg-gray-100 text-sm">
-            <p className="text-gray-600 italic">Ask me anything about Dominic Studios!</p>
-            {/* Integrate your bot chat component here if needed */}
-          </div>
-          <input
-            type="text"
-            placeholder="Type a message..."
-            className="mt-2 w-full px-3 py-2 border rounded text-sm"
-          />
-        </div>
-      )}
     </>
   )
 }
