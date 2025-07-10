@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import MainContent from '@/components/MainContent'
 import AboutSection from '@/components/AboutSection'
@@ -11,20 +11,28 @@ import TechnologiesPage from '@/components/TechnologiesUsedPage'
 import CommentsPage from '@/components/CommentsPage'
 import ContactPage from '@/components/ContactPage'
 import FinalPage from '@/components/FinalPage'
-import FloatingActionMenu from '@/components/FloatingActionMenu' // adjust path if needed
-
-
+import FloatingActionMenu from '@/components/FloatingActionMenu'
 
 export default function IntroPage() {
   const [clicked, setClicked] = useState(false)
   const [showIntro, setShowIntro] = useState(true)
 
   const handleClick = () => {
-    setClicked(true)
-    setTimeout(() => {
-      setShowIntro(false) // unmount intro after animation
-    }, 1200)
+    if (!clicked) {
+      setClicked(true)
+      setTimeout(() => {
+        setShowIntro(false)
+      }, 1200)
+    }
   }
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      handleClick()
+    }, 1000) // auto-dismiss after 1 second
+
+    return () => clearTimeout(timeout)
+  }, [])
 
   return (
     <main className="relative h-screen overflow-hidden font-poppins">
@@ -51,7 +59,6 @@ export default function IntroPage() {
       ) : (
         // --- Scrollable Sections after intro ---
         <div className="h-screen overflow-y-scroll snap-y snap-mandatory">
-          {/* Main Section with POP animation */}
           <motion.section 
             id="home"
             className="h-screen snap-start"
@@ -62,8 +69,7 @@ export default function IntroPage() {
             <MainContent />
           </motion.section>
 
-          {/* About Section with split animation */}
-           <section id="about" className="h-screen snap-start">
+          <section id="about" className="h-screen snap-start">
             <AboutSection />
           </section>
 
@@ -90,11 +96,11 @@ export default function IntroPage() {
           <section id="contact" className="min-h-contact snap-start">
             <ContactPage />
           </section>
+
           <section id="final" className="min-h-final snap-start snap-proximity scroll-smooth">
             <FinalPage />
           </section>
 
-          {/* Floating Action Menu */}
           <FloatingActionMenu />
         </div>
       )}
